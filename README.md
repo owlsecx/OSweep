@@ -18,22 +18,20 @@
 
 ## 📌 Overview
 
-Network host discovery, inventory & live sweep
+
+OSweep is a network host-discovery, inventory and watch toolkit — not a port scanner — that answers which hosts are alive, what they are called, who made them and what has changed since the last sweep. It fuses TCP connect, ICMP, ARP, ip-neigh and arping probes with reverse DNS, NetBIOS and mDNS name resolution and an embedded OUI vendor table. A watch mode reports new/gone/changed deltas, and inventories export to TXT, CSV, JSON or Markdown.
 
 ---
 
 ## ✨ Features
 
-- Target parser: CIDR, dash ranges, octet ranges, hostnames, host-list files, exclusions, caps
-- Multi-probe engine: TCP connect, ICMP (raw or system ping fallback), ARP cache, ip neigh, arping
-- Live-host scoring that fuses all probe signals
-- Name resolution: reverse DNS, NetBIOS NBSTAT, mDNS reverse PTR query (all degrade gracefully)
-- Embedded compact OUI vendor table
-- Light service hint (small port set, not a scan)
-- Topology summary: per-subnet density, chatty vs silent hosts, vendor mix
-- Watch mode with new/gone/changed host deltas
-- Export: TXT / CSV / JSON / Markdown inventory
-- Settings persisted to ~/OSweep/config.json
+
+- Flexible targets: CIDR, dash/octet ranges, hostnames, @host-list files, exclusions and caps
+- Multi-probe engine (TCP connect, ICMP, ARP cache, ip neigh, arping) with a fused live-host score
+- Name resolution via reverse DNS, NetBIOS NBSTAT and mDNS reverse PTR, all degrading gracefully
+- Embedded OUI vendor table plus an optional light service hint (not a full scan)
+- Topology summary (per-subnet density, chatty vs silent hosts, vendor mix) and a watch mode with deltas
+- Export TXT/CSV/JSON/Markdown or live-IPs-only, with clipboard copy and persisted settings
 
 ---
 
@@ -46,8 +44,13 @@ Network host discovery, inventory & live sweep
 
 ## 🚀 Usage
 
+
 ```bash
-./OSweep
+./OSweep --local --topology
+./OSweep -n 192.168.1.0/24 --hint --json -o hosts.json
+./OSweep -n 10.0.0.0/24 --watch 60 --rounds 10
+./OSweep --vendor 00:1a:2b:3c:4d:5e
+./OSweep --help
 ```
 
 ---
